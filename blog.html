@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Swift Community</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for blog page */
+        .blog-section {
+            max-width: 1200px;
+            margin: 8rem auto 4rem;
+            padding: 2rem;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .blog-search {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .blog-search input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-search input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px #F05138;
+        }
+        
+        .blog-search i {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .blog-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .category-tag {
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .category-tag:hover, .category-tag.active {
+            background: #F05138;
+            transform: translateY(-2px);
+        }
+        
+        .featured-posts {
+            margin-bottom: 4rem;
+        }
+        
+        .featured-posts h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .featured-post {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+        
+        .featured-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-post:hover img {
+            transform: scale(1.05);
+        }
+        
+        .featured-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: #fff;
+        }
+        
+        .featured-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .featured-meta i {
+            color: #F05138;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .blog-meta i {
+            color: #F05138;
+        }
+        
+        .blog-excerpt {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .read-more {
+            color: #F05138;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: #FF9500;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        .load-more {
+            display: block;
+            width: fit-content;
+            margin: 3rem auto 0;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid #F05138;
+            color: #F05138;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .load-more:hover {
+            background: #F05138;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-content h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="team.html">Team</a>
+        </div>
+    </nav>
+
+    <div class="blog-section">
+        <div class="blog-header">
+            <h1>Swift Community Blog</h1>
+            <p class="blog-intro">Stay up to date with the latest Swift news, tutorials, and insights from our community members.</p>
+            
+            <div class="blog-search">
+                <input type="text" placeholder="Search articles...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="blog-categories">
+                <a href="#" class="category-tag active">All</a>
+                <a href="#" class="category-tag">Tutorials</a>
+                <a href="#" class="category-tag">News</a>
+                <a href="#" class="category-tag">SwiftUI</a>
+                <a href="#" class="category-tag">iOS</a>
+                <a href="#" class="category-tag">Server-Side Swift</a>
+                <a href="#" class="category-tag">Tips & Tricks</a>
+                <a href="#" class="category-tag">Community</a>
+            </div>
+        </div>
+        
+        <div class="featured-posts">
+            <h2>Featured Posts</h2>
+            <div class="featured-grid">
+                <a href="#" class="featured-post">
+                    <img src="https://developer.apple.com/news/images/og/apple-developer-og.png" alt="WWDC23 Highlights">
+                    <div class="featured-content">
+                        <h3>WWDC23: What's New in Swift and SwiftUI</h3>
+                        <div class="featured-meta">
+                            <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                            <span><i class="far fa-user"></i> Sarah Johnson</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="#" class="featured-post">
+                    <img src="https://developer.apple.com/swift/images/swift-og.png" alt="Swift Concurrency">
+                    <div class="featured-content">
+                        <h3>Mastering Swift Concurrency: A Comprehensive Guide</h3>
+                        <div class="featured-meta">
+                            <span><i class="far fa-calendar"></i> June 10, 2023</span>
+                            <span><i class="far fa-user"></i> Michael Chen</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                <div class="blog-content">
+                    <h3>Building Custom SwiftUI Views: Best Practices</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> June 8, 2023</span>
+                        <span><i class="far fa-user"></i> David Kim</span>
+                    </div>
+                    <p class="blog-excerpt">Learn how to create reusable, maintainable custom views in SwiftUI with these proven best practices and techniques.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">SwiftUI</span>
+                        <span class="blog-tag">UI</span>
+                        <span class="blog-tag">Tutorial</span>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                <div class="blog-content">
+                    <h3>Swift Package Manager: From Basics to Advanced</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> June 5, 2023</span>
+                        <span><i class="far fa-user"></i> Elena Rodriguez</span>
+                    </div>
+                    <p class="blog-excerpt">Discover how to effectively use Swift Package Manager to manage dependencies and create reusable packages.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">SPM</span>
+                        <span class="blog-tag">Tools</span>
+                        <span class="blog-tag">Tutorial</span>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                <div class="blog-content">
+                    <h3>Testing Swift Applications with XCTest</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> June 1, 2023</span>
+                        <span><i class="far fa-user"></i> Priya Patel</span>
+                    </div>
+                    <p class="blog-excerpt">A comprehensive guide to writing effective unit tests and UI tests for your Swift applications using XCTest.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Testing</span>
+                        <span class="blog-tag">XCTest</span>
+                        <span class="blog-tag">Tutorial</span>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                <div class="blog-content">
+                    <h3>Swift on the Server: Building APIs with Vapor</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> May 28, 2023</span>
+                        <span><i class="far fa-user"></i> Thomas Weber</span>
+                    </div>
+                    <p class="blog-excerpt">Learn how to build robust and scalable web APIs using Swift and the Vapor framework.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Server-Side</span>
+                        <span class="blog-tag">Vapor</span>
+                        <span class="blog-tag">Tutorial</span>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                <div class="blog-content">
+                    <h3>Swift Performance Optimization Tips</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> May 25, 2023</span>
+                        <span><i class="far fa-user"></i> James Wilson</span>
+                    </div>
+                    <p class="blog-excerpt">Discover practical tips and techniques to optimize your Swift code for better performance.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Performance</span>
+                        <span class="blog-tag">Tips</span>
+                        <span class="blog-tag">Advanced</span>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                <div class="blog-content">
+                    <h3>Getting Started with Swift and Machine Learning</h3>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> May 20, 2023</span>
+                        <span><i class="far fa-user"></i> Olivia Martinez</span>
+                    </div>
+                    <p class="blog-excerpt">An introduction to machine learning in Swift using Core ML and Create ML frameworks.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Machine Learning</span>
+                        <span class="blog-tag">Core ML</span>
+                        <span class="blog-tag">Tutorial</span>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="load-more">Load More Posts</button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Swift Community</h3>
+                <p>A community of passionate Swift developers building the future together.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-slack"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="team.html">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> hello@swiftcommunity.org</p>
+                <p><i class="fas fa-map-marker-alt"></i> Worldwide</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Swift Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Register ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate blog cards when they come into view
+        gsap.from('.blog-card', {
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.blog-grid',
+                start: 'top 80%'
+            }
+        });
+        
+        // Animate featured posts
+        gsap.from('.featured-post', {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power2.out'
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('.blog-search input');
+        searchInput.addEventListener('input', (e) => {
+            // Here you would typically implement the search functionality
+            // For this demo, we'll just log the search term
+            console.log('Searching for:', e.target.value);
+        });
+        
+        // Category filter functionality
+        const categoryTags = document.querySelectorAll('.category-tag');
+        categoryTags.forEach(tag => {
+            tag.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Remove active class from all tags
+                categoryTags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tag
+                tag.classList.add('active');
+                
+                // Here you would typically filter the blog posts based on the selected category
+                console.log('Filtering by category:', tag.textContent);
+            });
+        });
+        
+        // Load more functionality
+        const loadMoreButton = document.querySelector('.load-more');
+        loadMoreButton.addEventListener('click', () => {
+            // Here you would typically load more posts from the server
+            // For this demo, we'll just log the action
+            console.log('Loading more posts...');
+        });
+    </script>
+</body>
+</html> 

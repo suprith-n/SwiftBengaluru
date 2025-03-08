@@ -3,131 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swift Bengaluru - Apple Developer Community</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            overflow: hidden;
-            height: 100vh;
-        }
-
-        .hello-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .hello-text {
-            font-size: 80px;
-            font-weight: 300;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        .welcome-message {
-            font-size: 24px;
-            margin-top: 20px;
-            opacity: 0;
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .logo-container {
-            position: absolute;
-            bottom: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-        }
-
-        .swift-logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 20px;
-        }
-
-        .community-name {
-            font-size: 40px;
-            font-weight: 500;
-            opacity: 0;
-        }
-
-        @media (max-width: 768px) {
-            .hello-text {
-                font-size: 50px;
-            }
-            .community-name {
-                font-size: 30px;
-            }
-        }
-    </style>
+    <title>Swift Community - For Swift Developers</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="hello-container">
-        <h1 class="hello-text">Hello</h1>
-    </div>
-    <div class="welcome-message">Welcome to</div>
-    <div class="logo-container">
-        <svg class="swift-logo" viewBox="0 0 256 256" fill="white">
-            <path d="M128,0C57.3,0,0,57.3,0,128s57.3,128,128,128s128-57.3,128-128S198.7,0,128,0z M222.2,159.7
-                c-12.9,25.1-37.3,44.4-67.3,49.8c-30.1,5.4-60.2-4.7-81.1-26.8c14.8,9.5,32.2,14.9,50.3,14.9c23.2,0,44.8-8.6,61.3-23.2
-                c-9.3-4.1-18.6-9.1-27.9-14.8c-7.3-4.5-14.6-9.3-21.9-14.2c-3.9-2.6-7.7-5.3-11.6-7.9c-2.8-1.9-5.7-3.7-8.5-5.5
-                c-0.9-0.6-1.8-1.2-2.7-1.8c-0.3-0.2-0.6-0.4-0.9-0.6c-0.1-0.1-0.3-0.2-0.4-0.3c0,0-0.1-0.1-0.1-0.1l0,0c0,0-0.1,0.1-0.1,0.1
-                c-0.1,0.1-0.3,0.2-0.4,0.3c-0.3,0.2-0.6,0.4-0.9,0.6c-0.9,0.6-1.8,1.2-2.7,1.8c-2.8,1.8-5.7,3.7-8.5,5.5
-                c-3.9,2.6-7.7,5.3-11.6,7.9c-7.3,4.9-14.6,9.7-21.9,14.2c-9.3,5.7-18.6,10.7-27.9,14.8c16.5,14.6,38.1,23.2,61.3,23.2
-                c18.1,0,35.5-5.4,50.3-14.9c-20.9,22.1-51,32.2-81.1,26.8c-30.1-5.4-54.4-24.7-67.3-49.8c-12.9-25.1-12.9-54.3,0-79.4
-                C33.8,72.6,58.2,53.3,88.3,47.9c30.1-5.4,60.2,4.7,81.1,26.8c-14.8-9.5-32.2-14.9-50.3-14.9c-23.2,0-44.8,8.6-61.3,23.2
-                c9.3,4.1,18.6,9.1,27.9,14.8c7.3,4.5,14.6,9.3,21.9,14.2c3.9,2.6,7.7,5.3,11.6,7.9c2.8,1.9,5.7,3.7,8.5,5.5
-                c0.9,0.6,1.8,1.2,2.7,1.8c0.3,0.2,0.6,0.4,0.9,0.6c0.1,0.1,0.3,0.2,0.4,0.3c0,0,0.1,0.1,0.1,0.1l0,0c0,0,0.1-0.1,0.1-0.1
-                c0.1-0.1,0.3-0.2,0.4-0.3c0.3-0.2,0.6-0.4,0.9-0.6c0.9-0.6,1.8-1.2,2.7-1.8c2.8-1.8,5.7-3.7,8.5-5.5c3.9-2.6,7.7-5.3,11.6-7.9
-                c7.3-4.9,14.6-9.7,21.9-14.2c9.3-5.7,18.6-10.7,27.9-14.8c-16.5-14.6-38.1-23.2-61.3-23.2c-18.1,0-35.5,5.4-50.3,14.9
-                c20.9-22.1,51-32.2,81.1-26.8c30.1,5.4,54.4,24.7,67.3,49.8C235.1,105.4,235.1,134.6,222.2,159.7z"/>
-        </svg>
-        <h2 class="community-name">Swift Bengaluru</h2>
+    <nav class="main-nav">
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="team.html">Team</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <section class="hero-section">
+            <div class="swift-logo animate-logo">
+                <svg viewBox="0 0 256 256">
+                    <path d="M128,0C57.3,0,0,57.3,0,128s57.3,128,128,128s128-57.3,128-128S198.7,0,128,0z" fill="#F05138"/>
+                </svg>
+            </div>
+            <h1 class="animate-title">Welcome to Swift Bengaluru</h1>
+            <p class="animate-subtitle">Join the largest Swift developer community in India</p>
+            <div class="cta-buttons animate-buttons">
+                <a href="join.html" class="cta-button primary">Join Our Community</a>
+                <a href="events.html" class="cta-button secondary">Upcoming Meetups</a>
+            </div>
+        </section>
+
+        <section class="highlights-section">
+            <div class="highlight-card animate-card">
+                <i class="fas fa-calendar-alt highlight-icon"></i>
+                <h3>Monthly Meetups</h3>
+                <p>Regular tech talks, workshops, and networking events focused on Swift and Apple platforms</p>
+            </div>
+            <div class="highlight-card animate-card">
+                <i class="fas fa-laptop-code highlight-icon"></i>
+                <h3>Code Labs</h3>
+                <p>Hands-on coding sessions with experienced iOS developers and Apple engineers</p>
+            </div>
+            <div class="highlight-card animate-card">
+                <i class="fas fa-users highlight-icon"></i>
+                <h3>Mentorship</h3>
+                <p>Get guidance from senior developers and help others grow in their Swift journey</p>
+            </div>
+            <div class="highlight-card animate-card">
+                <i class="fas fa-rocket highlight-icon"></i>
+                <h3>Career Growth</h3>
+                <p>Job opportunities, resume reviews, and interview preparation for iOS roles</p>
+            </div>
+        </section>
+
+        <section class="upcoming-events">
+            <h2 class="animate-title">Next Meetup</h2>
+            <div class="event-spotlight animate-up">
+                <div class="event-details">
+                    <div class="event-date">
+                        <span class="month">Aug</span>
+                        <span class="day">26</span>
+                        <span class="year">2023</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>SwiftUI Deep Dive: Building Modern Apps</h3>
+                        <p class="event-description">Join us for an in-depth session on SwiftUI, Apple's modern framework for building great user interfaces across all Apple platforms.</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> WeWork Galaxy, Bengaluru</span>
+                            <span><i class="fas fa-clock"></i> 2:00 PM - 5:00 PM</span>
+                        </div>
+                        <a href="events.html" class="cta-button primary">RSVP Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="community-stats">
+            <div class="stat-card animate-stat">
+                <span class="stat-number" data-target="2000">0</span>
+                <span class="stat-label">Community Members</span>
+            </div>
+            <div class="stat-card animate-stat">
+                <span class="stat-number" data-target="50">0</span>
+                <span class="stat-label">Monthly Events</span>
+            </div>
+            <div class="stat-card animate-stat">
+                <span class="stat-number" data-target="100">0</span>
+                <span class="stat-label">Tech Talks</span>
+            </div>
+            <div class="stat-card animate-stat">
+                <span class="stat-number" data-target="30">0</span>
+                <span class="stat-label">Partner Companies</span>
+            </div>
+        </section>
+
+        <section class="featured-content">
+            <h2 class="animate-title">Latest Resources</h2>
+            <div class="content-grid">
+                <div class="content-card animate-card">
+                    <div class="content-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                    <div class="content-info">
+                        <span class="content-tag">Tutorial</span>
+                        <h3>Getting Started with Swift Concurrency</h3>
+                        <p>Learn how to write better asynchronous code using Swift's modern concurrency features.</p>
+                        <a href="resources.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="content-card animate-card">
+                    <div class="content-image" style="background-image: url('https://developer.apple.com/news/images/og/apple-developer-og.png')"></div>
+                    <div class="content-info">
+                        <span class="content-tag">News</span>
+                        <h3>WWDC23 Highlights for Swift Developers</h3>
+                        <p>Key announcements and updates from WWDC23 that impact Swift developers.</p>
+                        <a href="blog.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-community">
+            <h2 class="animate-title">Why Join Swift Bengaluru?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card animate-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Learn</h3>
+                    <p>Access workshops, tutorials, and resources to enhance your Swift skills</p>
+                </div>
+                <div class="benefit-card animate-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Network</h3>
+                    <p>Connect with fellow developers, mentors, and industry experts</p>
+                </div>
+                <div class="benefit-card animate-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Share</h3>
+                    <p>Share your knowledge and experiences with the community</p>
+                </div>
+                <div class="benefit-card animate-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Grow</h3>
+                    <p>Find job opportunities and advance your career in iOS development</p>
+                </div>
+            </div>
+            <div class="join-cta animate-up">
+                <a href="join.html" class="cta-button primary">Become a Member</a>
+                <p>It's free and always will be!</p>
+            </div>
+        </section>
     </div>
 
-    <script>
-        const tl = gsap.timeline();
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Swift Community</h3>
+                <p>A community of passionate Swift developers building the future together.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-slack"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="team.html">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> hello@swiftcommunity.org</p>
+                <p><i class="fas fa-map-marker-alt"></i> Worldwide</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Swift Community. All rights reserved.</p>
+        </div>
+    </footer>
 
-        // Hello animation
-        tl.to(".hello-text", {
-            duration: 1.5,
-            opacity: 1,
-            scale: 1,
-            ease: "power4.out"
-        })
-        // Welcome message animation
-        .to(".welcome-message", {
-            duration: 0.8,
-            opacity: 1,
-            y: 40,
-            ease: "power2.out"
-        }, "-=0.5")
-        // Logo and community name animation
-        .to(".logo-container", {
-            duration: 1.2,
-            bottom: "20%",
-            ease: "power4.out"
-        })
-        .to(".community-name", {
-            duration: 0.8,
-            opacity: 1,
-            y: -20,
-            ease: "power2.out"
-        }, "-=0.5");
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

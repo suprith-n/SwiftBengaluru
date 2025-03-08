@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Swift Community</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for resources page */
+        .resources-section {
+            max-width: 1200px;
+            margin: 8rem auto 4rem;
+            padding: 2rem;
+        }
+        
+        .resources-section h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        
+        .resources-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .resources-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            position: relative;
+        }
+        
+        .tab-button:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: #F05138;
+            transition: width 0.3s ease;
+        }
+        
+        .tab-button:hover:after, .tab-button.active:after {
+            width: 80%;
+        }
+        
+        .tab-button.active {
+            color: #F05138;
+            font-weight: 600;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .resource-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .resource-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-meta {
+            color: #F05138;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-meta i {
+            margin-right: 0.5rem;
+        }
+        
+        .resource-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .resource-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .resource-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .resource-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .resource-link {
+            color: #F05138;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            color: #FF9500;
+        }
+        
+        .resource-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .contribute-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .contribute-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .contribute-section p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-button {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html" class="active">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="team.html">Team</a>
+        </div>
+    </nav>
+
+    <div class="resources-section">
+        <h1>Swift Resources</h1>
+        <p class="resources-intro">Explore our curated collection of Swift resources to help you learn, grow, and master Swift development. From beginner tutorials to advanced techniques, we've got you covered.</p>
+        
+        <div class="resources-tabs">
+            <button class="tab-button active" data-tab="tutorials">Tutorials</button>
+            <button class="tab-button" data-tab="documentation">Documentation</button>
+            <button class="tab-button" data-tab="libraries">Libraries & Frameworks</button>
+            <button class="tab-button" data-tab="tools">Tools</button>
+            <button class="tab-button" data-tab="books">Books</button>
+            <button class="tab-button" data-tab="videos">Videos</button>
+        </div>
+        
+        <div class="tab-content active" id="tutorials">
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                    <div class="resource-content">
+                        <h3>Swift Basics for Beginners</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Swift Community
+                        </div>
+                        <p class="resource-description">A comprehensive tutorial series covering the fundamentals of Swift programming language. Perfect for those new to Swift or programming in general.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Beginner</span>
+                            <span class="resource-tag">Swift 5</span>
+                            <span class="resource-tag">Fundamentals</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#" class="resource-link">View Tutorial <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png')"></div>
+                    <div class="resource-content">
+                        <h3>Building iOS Apps with SwiftUI</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Apple Developer
+                        </div>
+                        <p class="resource-description">Learn how to build beautiful and responsive user interfaces for iOS apps using SwiftUI, Apple's modern UI framework.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Intermediate</span>
+                            <span class="resource-tag">SwiftUI</span>
+                            <span class="resource-tag">iOS</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#" class="resource-link">View Tutorial <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/news/images/og/apple-developer-og.png')"></div>
+                    <div class="resource-content">
+                        <h3>Advanced Swift Concurrency</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Swift Community
+                        </div>
+                        <p class="resource-description">Dive deep into Swift's concurrency model, including async/await, actors, and structured concurrency. Master writing efficient and safe concurrent code.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Advanced</span>
+                            <span class="resource-tag">Concurrency</span>
+                            <span class="resource-tag">Swift 5.5+</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#" class="resource-link">View Tutorial <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                    <div class="resource-content">
+                        <h3>Server-Side Swift with Vapor</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Vapor Team
+                        </div>
+                        <p class="resource-description">Learn how to build robust and scalable web applications and APIs using Swift on the server with the Vapor framework.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Intermediate</span>
+                            <span class="resource-tag">Server-Side</span>
+                            <span class="resource-tag">Vapor</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#" class="resource-link">View Tutorial <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                    <div class="resource-content">
+                        <h3>Testing in Swift</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Swift Community
+                        </div>
+                        <p class="resource-description">A comprehensive guide to writing effective unit tests, UI tests, and performance tests for your Swift applications.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Intermediate</span>
+                            <span class="resource-tag">Testing</span>
+                            <span class="resource-tag">XCTest</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#" class="resource-link">View Tutorial <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                    <div class="resource-content">
+                        <h3>Swift Design Patterns</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Swift Community
+                        </div>
+                        <p class="resource-description">Explore common design patterns and architectural approaches for building maintainable and scalable Swift applications.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Advanced</span>
+                            <span class="resource-tag">Design Patterns</span>
+                            <span class="resource-tag">Architecture</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#" class="resource-link">View Tutorial <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="documentation">
+            <div class="resource-grid">
+                <!-- Documentation resources would go here -->
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                    <div class="resource-content">
+                        <h3>Swift Language Guide</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Apple
+                        </div>
+                        <p class="resource-description">The official Swift language guide, covering all aspects of the Swift programming language with detailed explanations and examples.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Official</span>
+                            <span class="resource-tag">Language Guide</span>
+                            <span class="resource-tag">Reference</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/" class="resource-link" target="_blank">View Documentation <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png')"></div>
+                    <div class="resource-content">
+                        <h3>SwiftUI Documentation</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Apple
+                        </div>
+                        <p class="resource-description">Comprehensive documentation for SwiftUI, Apple's declarative framework for building user interfaces across all Apple platforms.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Official</span>
+                            <span class="resource-tag">SwiftUI</span>
+                            <span class="resource-tag">UI Framework</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="https://developer.apple.com/documentation/swiftui" class="resource-link" target="_blank">View Documentation <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More documentation resources -->
+            </div>
+        </div>
+        
+        <div class="tab-content" id="libraries">
+            <div class="resource-grid">
+                <!-- Libraries & Frameworks resources would go here -->
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://avatars.githubusercontent.com/u/7575099?s=200&v=4')"></div>
+                    <div class="resource-content">
+                        <h3>Alamofire</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Alamofire Software Foundation
+                        </div>
+                        <p class="resource-description">An elegant networking library for Swift, making HTTP networking requests simple and easy to use in your iOS and macOS applications.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Networking</span>
+                            <span class="resource-tag">HTTP</span>
+                            <span class="resource-tag">Open Source</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="https://github.com/Alamofire/Alamofire" class="resource-link" target="_blank">View Library <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More libraries & frameworks -->
+            </div>
+        </div>
+        
+        <div class="tab-content" id="tools">
+            <div class="resource-grid">
+                <!-- Tools resources would go here -->
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/assets/elements/icons/xcode/xcode-96x96_2x.png')"></div>
+                    <div class="resource-content">
+                        <h3>Xcode</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Apple
+                        </div>
+                        <p class="resource-description">Apple's integrated development environment (IDE) for macOS, used to develop software for macOS, iOS, iPadOS, watchOS, and tvOS.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">IDE</span>
+                            <span class="resource-tag">Development Tool</span>
+                            <span class="resource-tag">Apple</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="https://developer.apple.com/xcode/" class="resource-link" target="_blank">View Tool <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More tools -->
+            </div>
+        </div>
+        
+        <div class="tab-content" id="books">
+            <div class="resource-grid">
+                <!-- Books resources would go here -->
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/swift/images/swift-og.png')"></div>
+                    <div class="resource-content">
+                        <h3>Swift Programming: The Big Nerd Ranch Guide</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Big Nerd Ranch
+                        </div>
+                        <p class="resource-description">A comprehensive guide to Swift programming, covering everything from the basics to advanced topics with practical examples and exercises.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Book</span>
+                            <span class="resource-tag">Comprehensive</span>
+                            <span class="resource-tag">Beginner to Advanced</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="#" class="resource-link">View Book <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More books -->
+            </div>
+        </div>
+        
+        <div class="tab-content" id="videos">
+            <div class="resource-grid">
+                <!-- Videos resources would go here -->
+                <div class="resource-card">
+                    <div class="resource-image" style="background-image: url('https://developer.apple.com/wwdc23/images/og/wwdc23-og-twitter.jpg')"></div>
+                    <div class="resource-content">
+                        <h3>WWDC Sessions</h3>
+                        <div class="resource-meta">
+                            <i class="fas fa-user"></i> By Apple
+                        </div>
+                        <p class="resource-description">Video sessions from Apple's Worldwide Developers Conference, covering the latest advancements in Swift, iOS, macOS, and other Apple platforms.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Video</span>
+                            <span class="resource-tag">WWDC</span>
+                            <span class="resource-tag">Apple</span>
+                        </div>
+                        <div class="resource-footer">
+                            <a href="https://developer.apple.com/videos/" class="resource-link" target="_blank">View Videos <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More videos -->
+            </div>
+        </div>
+        
+        <div class="contribute-section">
+            <h2>Contribute to Our Resources</h2>
+            <p>Have a Swift resource you'd like to share with the community? We welcome contributions from Swift developers of all levels. Submit your tutorials, libraries, tools, or other resources to help others learn and grow.</p>
+            <a href="contact.html" class="cta-button primary">Submit a Resource</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Swift Community</h3>
+                <p>A community of passionate Swift developers building the future together.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-slack"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="team.html">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> hello@swiftcommunity.org</p>
+                <p><i class="fas fa-map-marker-alt"></i> Worldwide</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Swift Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Register ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate resource cards when they come into view
+        gsap.from('.resource-card', {
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.resource-grid',
+                start: 'top 80%'
+            }
+        });
+        
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Animate the newly visible resource cards
+                gsap.from(`#${tabId} .resource-card`, {
+                    duration: 0.8,
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.1,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
