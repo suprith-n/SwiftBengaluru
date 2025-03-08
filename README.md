@@ -1,6 +1,6 @@
-# Swift Bengaluru Community Website 🌐
+# Swift Bengaluru Community Website [🌐](https://suprith-n.github.io/SwiftBengaluru/index.html){:target="_blank"}
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://yourusername.github.io/repositoryname/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://suprith-n.github.io/SwiftBengaluru/index.html){:target="_blank"}
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
 Official website for the Swift Bengaluru iOS Developer Community. Built with pure HTML/CSS and hosted on GitHub Pages.
@@ -13,12 +13,8 @@ Official website for the Swift Bengaluru iOS Developer Community. Built with pur
 - Swift logo animation
 
 ## Deployment 🚀
-This site is automatically deployed through GitHub Pages:
-1. Ensure all files are in root directory
-2. Go to Settings → Pages
-3. Set source to **Deploy from branch**
-4. Select `main` branch and `/ (root)` folder
-5. Site will be live at `https://<your-username>.github.io/<repo-name>/`
+This site is deployed at:  
+[https://suprith-n.github.io/SwiftBengaluru/](https://suprith-n.github.io/SwiftBengaluru/index.html){:target="_blank"}
 
 ## Project Structure 📁
 ```
