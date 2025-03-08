@@ -1,6 +1,6 @@
-# Swift Bengaluru Community Website [🌐](https://suprith-n.github.io/SwiftBengaluru/index.html){:target="_blank"}
+# Swift Bengaluru Community Website [🌐](https://suprith-n.github.io/SwiftBengaluru/index.html)
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://suprith-n.github.io/SwiftBengaluru/index.html){:target="_blank"}
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://suprith-n.github.io/SwiftBengaluru/index.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
 Official website for the Swift Bengaluru iOS Developer Community. Built with pure HTML/CSS and hosted on GitHub Pages.
@@ -14,7 +14,7 @@ Official website for the Swift Bengaluru iOS Developer Community. Built with pur
 
 ## Deployment 🚀
 This site is deployed at:  
-[https://suprith-n.github.io/SwiftBengaluru/](https://suprith-n.github.io/SwiftBengaluru/index.html){:target="_blank"}
+[https://suprith-n.github.io/SwiftBengaluru/](https://suprith-n.github.io/SwiftBengaluru/index.html)
 
 ## Project Structure 📁
 ```
